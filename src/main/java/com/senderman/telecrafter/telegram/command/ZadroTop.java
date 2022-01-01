@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class ZadroTop implements CommandExecutor {
 
+    public static final int LIMIT_MAX = 100;
     private final MinecraftProvider minecraft;
     private final TelegramProvider telegram;
 
@@ -33,14 +34,26 @@ public class ZadroTop implements CommandExecutor {
     @Override
     public void execute(Message message) {
 
+        String[] params = getParams(message);
+        int limit = 10;
+        try {
+            if (params.length >= 2) {
+                limit = Math.min(Integer.parseInt(params[1]), LIMIT_MAX);
+            }
+        }
+        catch (NumberFormatException ignored) {}
         PlayersInfo info = minecraft.getOnlineInfo();
         String top = Arrays.stream(info.getOfflinePlayers())
                 .sorted((p1, p2) -> Integer.compare(getTickPlayer(p2), getTickPlayer(p1)))
-                .limit(10)
+                .limit(limit)
                 .map(p -> "\uD83D\uDC64 " + p.getName() + " (" + formatTicks(p.getStatistic(Statistic.PLAY_ONE_MINUTE)) + ")")
                 .collect(Collectors.joining("\n"));
 
         telegram.sendMessageToMainChat("<b>Топ задротов:</b>\n\n" + top);
+    }
+
+    private String[] getParams(Message message) {
+        return message.getText().split("\\s+", 2);
     }
 
     private int getTickPlayer(OfflinePlayer player) {
