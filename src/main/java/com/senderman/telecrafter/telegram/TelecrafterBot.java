@@ -43,6 +43,11 @@ public class TelecrafterBot {
 
         if (command.contains("@")) return; // skip other's bot commands
 
+        if (message.getText().length() > 400 && !config.isAdmin(message.getFrom().getId())) {
+            telegram.sendMessage(chatId, "Неадминистраторам разрешаются лишь функции до 400 символов.");
+            return;
+        }
+
         Optional.ofNullable(commandKeeper.getExecutor(command)).ifPresent(executor -> {
             if (!userHasPermission(executor, message)) {
                 telegram.sendMessage(chatId, "Простите, но вы не можете использовать эту команду.");
