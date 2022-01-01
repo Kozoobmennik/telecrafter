@@ -42,6 +42,8 @@ public class InjectionConfig {
         commandExecutors.add(new Respack(telegram, getInstance(ServerPropertiesProvider.class)));
         commandExecutors.add(new RunCommand(telegram, minecraft));
         commandExecutors.add(new ZadroTop(telegram, minecraft));
+        commandExecutors.add(new EarlyBirds(telegram, minecraft));
+        commandExecutors.add(new RaidTop(telegram, minecraft));
         commandExecutors.add(new Help(telegram, commandExecutors));
 
         save(new CommandKeeper(telegram, commandExecutors));
