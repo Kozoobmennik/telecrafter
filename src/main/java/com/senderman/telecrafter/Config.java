@@ -14,6 +14,8 @@ public class Config {
     private Long chatId;
     @JsonProperty
     private Set<Long> admins;
+    @JsonProperty
+    private Set<Long> moderators;
     @JsonProperty(defaultValue = "false")
     private boolean allowForeignChats;
 
@@ -33,8 +35,14 @@ public class Config {
         return admins;
     }
 
+    public Set<Long> getModerators() { return moderators; }
+
     public boolean isAdmin(long userId) {
         return admins.contains(userId);
+    }
+
+    public boolean isModerator(long userId) {
+        return moderators.contains(userId) || isAdmin(userId);
     }
 
     public boolean isAllowForeignChats() {

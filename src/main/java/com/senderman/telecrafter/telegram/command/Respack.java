@@ -2,6 +2,7 @@ package com.senderman.telecrafter.telegram.command;
 
 import com.senderman.telecrafter.minecraft.ServerPropertiesProvider;
 import com.senderman.telecrafter.telegram.TelegramProvider;
+import com.senderman.telecrafter.telegram.UserRoles;
 import com.senderman.telecrafter.telegram.api.entity.Message;
 
 import javax.xml.bind.DatatypeConverter;
@@ -33,8 +34,8 @@ public class Respack implements CommandExecutor {
     }
 
     @Override
-    public boolean adminsOnly() {
-        return true;
+    public UserRoles roleOnly() {
+        return UserRoles.ADMIN;
     }
 
     @Override

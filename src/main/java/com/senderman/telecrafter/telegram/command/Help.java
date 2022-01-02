@@ -1,6 +1,7 @@
 package com.senderman.telecrafter.telegram.command;
 
 import com.senderman.telecrafter.telegram.TelegramProvider;
+import com.senderman.telecrafter.telegram.UserRoles;
 import com.senderman.telecrafter.telegram.api.entity.Message;
 
 import java.util.Set;
@@ -35,9 +36,10 @@ public class Help implements CommandExecutor {
     }
 
     private String formatExecutor(CommandExecutor executor) {
-        String adminOnly = executor.adminsOnly() ? " (админам)" : " ";
+        String adminOnly = executor.roleOnly() == UserRoles.ADMIN ? " (админам)" : " ";
+        String moderatorsOnly = executor.roleOnly() == UserRoles.MODERATOR ? " (модераторам)" : " ";
         String pmOnly = executor.pmOnly() ? " (PM)" : " ";
-        String options = (adminOnly + pmOnly).trim();
+        String options = (adminOnly + moderatorsOnly + pmOnly).trim();
         return executor.getCommand() + " " + options + " - " + executor.getDescription();
     }
 }

@@ -65,8 +65,11 @@ public class TelecrafterBot {
     private boolean userHasPermission(CommandExecutor executor, Message message) {
         long userId = message.getFrom().getId();
         long chatId = message.getChatId();
-        if (executor.adminsOnly()) {
+        if (executor.roleOnly() == UserRoles.ADMIN) {
             return config.isAdmin(userId);
+        }
+        if (executor.roleOnly() == UserRoles.MODERATOR) {
+            return config.isModerator(userId);
         }
         return  config.isAdmin(userId) ||
                 config.isAllowForeignChats() ||

@@ -1,5 +1,6 @@
 package com.senderman.telecrafter.telegram.command;
 
+import com.senderman.telecrafter.telegram.UserRoles;
 import com.senderman.telecrafter.telegram.api.entity.Message;
 
 public interface CommandExecutor {
@@ -8,8 +9,8 @@ public interface CommandExecutor {
 
     String getDescription();
 
-    default boolean adminsOnly() {
-        return false;
+    default UserRoles roleOnly() {
+        return UserRoles.GUEST;
     }
 
     default boolean pmOnly() {
