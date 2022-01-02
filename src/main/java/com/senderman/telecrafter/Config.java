@@ -18,6 +18,8 @@ public class Config {
     private Set<Long> moderators;
     @JsonProperty(defaultValue = "false")
     private boolean allowForeignChats;
+    @JsonProperty(defaultValue = "whitelist add")
+    private String whitelistAddCommand;
 
     public String getBotToken() {
         return botToken;
@@ -25,6 +27,10 @@ public class Config {
 
     public String getBotName() {
         return botName;
+    }
+
+    public String getWhitelistAddCommand() {
+        return whitelistAddCommand;
     }
 
     public Long getChatId() {

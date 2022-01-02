@@ -43,6 +43,7 @@ public class InjectionConfig {
         commandExecutors.add(new RunCommand(telegram, minecraft));
         commandExecutors.add(new ZadroTop(telegram, minecraft));
         commandExecutors.add(new EarlyBirds(telegram, minecraft));
+        commandExecutors.add(new Whitelist(telegram, minecraft));
         commandExecutors.add(new RaidTop(telegram, minecraft));
         commandExecutors.add(new Help(telegram, commandExecutors));
 

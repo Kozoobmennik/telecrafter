@@ -20,6 +20,10 @@ public class TelegramProvider {
         this.config = config;
     }
 
+    public String getWhitelistCommand() {
+        return config.getWhitelistAddCommand();
+    }
+
     public void sendMessage(long chatId, String text) {
         api.sendMessage(chatId, text);
     }
