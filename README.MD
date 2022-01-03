@@ -28,6 +28,7 @@ botToken: токен вашего бота
 botName: имя бота без @
 chatId: id чата в который будет писать бот
 allowForeignChats: false # могут ли юзеры юзать бота в других чатах (админы могут всегда)
+whitelistAddCommand: easywhitelist add
 admins: # id админов в Telegram которым будут доступны дополнительные команды
  - 123453242
  - 678914242
