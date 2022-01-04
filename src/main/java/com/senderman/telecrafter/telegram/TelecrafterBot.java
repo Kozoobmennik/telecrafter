@@ -69,7 +69,9 @@ public class TelecrafterBot {
             return config.isAdmin(userId);
         }
         if (executor.roleOnly() == UserRoles.MODERATOR) {
-            return config.isModerator(userId);
+            return config.isModerator(userId) &&
+                   (config.isAllowForeignChats() ||
+                    chatId == config.getChatId());
         }
         return  config.isAdmin(userId) ||
                 config.isAllowForeignChats() ||

@@ -22,7 +22,7 @@ public class MineBan implements CommandExecutor {
 
     @Override
     public String getCommand() {
-        return "/ban";
+        return "/mban";
     }
 
     @Override
@@ -52,7 +52,10 @@ public class MineBan implements CommandExecutor {
         String command = String.format(
                 "%s %s",
                 "ban",
-                args[1].replaceAll(" ", "")
+                args[1].replaceAll(
+                        "[ @]",
+                        ""
+                )
         );
 
         try {
